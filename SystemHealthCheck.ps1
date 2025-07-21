@@ -57,5 +57,5 @@ if ($save -eq 'Y' -or $save -eq 'y') {
     # Open the file
     Start-Process $logFilePath
 
-    Write-Host "✔️ Report saved as $logFileName`n"
+    Write-Host "Report saved as $logFileName`n"
 }
