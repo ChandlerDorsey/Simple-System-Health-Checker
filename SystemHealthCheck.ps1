@@ -41,9 +41,21 @@ $report += "-------------------------------------"
 $report | ForEach-Object { Write-Output $_ }
 
 # Ask user if they want to save report
-$saveFile = Read-Host "Save report to file? (Y/N)"
-if ($saveFile -match '^[Yy]') {
-    $fileName = "SystemHealthReport_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
-    $report | Out-File $fileName
-    Write-Output "Report saved as $fileName"
+$save = Read-Host "Would you like to save this report as a .txt file? (Y/N)"
+
+if ($save -eq 'Y' -or $save -eq 'y') {
+    # Generate timestamp (safe for filenames)
+    $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+    $logFileName = "health_report_$timestamp.txt"
+
+    # Save in same folder as the script
+    $logFilePath = Join-Path -Path $PSScriptRoot -ChildPath $logFileName
+
+    # Save the report
+    $report | Out-File -FilePath $logFilePath
+
+    # Open the file
+    Start-Process $logFilePath
+
+    Write-Host "✔️ Report saved as $logFileName`n"
 }
