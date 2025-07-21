@@ -1,6 +1,10 @@
-# Simple System Health Checker
+# Simple System Health Checker 
 
-A PowerShell script that provides a quick overview of your system’s health, including CPU usage, memory status, disk space, and network adapter status. Perfect for help desk, sysadmin, or data center support roles.
+A PowerShell script that provides a quick overview of your system’s health, including CPU usage, memory status, disk space, and network adapter status.
+
+The script pulls live data from built-in PowerShell commands like Get-CimInstance and Get-PSDrive, processes the output, and displays it cleanly in the terminal. It also gives the option to export the results to a timestamped .txt file, which is useful for logging or audits.
+
+
 
 ---
 
@@ -44,9 +48,9 @@ A PowerShell script that provides a quick overview of your system’s health, in
 ```
 6. Save the Report (Optional)
 
-    When prompted, type Y to save the report as a .txt file
+   When prompted, type **Y** to save the report as a .txt file
 
-    Or type N to display the results in the PowerShell window only
+   Or type **N** to display the results in the PowerShell window only
 
 ## 📝 Example Output
    
@@ -68,14 +72,18 @@ Adapter Wi-Fi: Status Up
 
 If you see this error:
 
+```
 .\SystemHealthCheck.ps1 cannot be loaded because it is not digitally signed.
-
+```
 🔧 Run this to allow the script temporarily:
 
+```
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-
+```
 Then re-run the script:
 
+```
 .\SystemHealthCheck.ps1
+```
 
-    This change only affects the current PowerShell session and does not permanently reduce system security.
+ This change only affects the current PowerShell session and does not permanently reduce system security.
